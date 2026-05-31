@@ -51,3 +51,7 @@ arrows / PgUp / PgDn scroll the table.
 - `ipcalc_core.py` — pure calculation logic (standard library only); import and
   unit-test it without the UI.
 - `install.sh` — installer/uninstaller.
+
+## License
+
+[MIT](LICENSE) © Alberto Linard
