@@ -5,6 +5,9 @@ with [Textual](https://textual.textualize.io/). No browser required.
 
 ## Features
 
+- **Preset networks** — a dropdown to quick-fill well-known ranges: classful
+  A/B/C/D/E, the RFC 1918 private blocks, and special-purpose IPv4/IPv6
+  (loopback, link-local, CGNAT, documentation, ULA, global).
 - **IPv4 & IPv6** — address, netmask/wildcard, network, host range, broadcast,
   usable/total counts, class, and type (Private/Public/ULA/Link-local/…).
 - **Binary view** — IPv4 addresses in binary with network bits and host bits

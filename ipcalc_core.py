@@ -8,6 +8,30 @@ trivially testable and reusable by any front-end.
 import ipaddress
 
 
+# Predefined networks the UI offers as quick-fill choices. Each entry is
+# (menu label, address value). Grouped by classful, RFC 1918 private,
+# special-purpose IPv4, and IPv6 — covering "A, B, C, etc.".
+PRESETS = [
+    ("Class A  ·  /8   ·  10.0.0.0/8",          "10.0.0.0/8"),
+    ("Class B  ·  /16  ·  172.16.0.0/16",       "172.16.0.0/16"),
+    ("Class C  ·  /24  ·  192.168.1.0/24",      "192.168.1.0/24"),
+    ("Class D  ·  multicast  ·  224.0.0.0/4",   "224.0.0.0/4"),
+    ("Class E  ·  reserved   ·  240.0.0.0/4",   "240.0.0.0/4"),
+    ("Private A  ·  10.0.0.0/8",                "10.0.0.0/8"),
+    ("Private B  ·  172.16.0.0/12",             "172.16.0.0/12"),
+    ("Private C  ·  192.168.0.0/16",            "192.168.0.0/16"),
+    ("Loopback  ·  127.0.0.0/8",                "127.0.0.0/8"),
+    ("Link-local (APIPA)  ·  169.254.0.0/16",   "169.254.0.0/16"),
+    ("CGNAT  ·  100.64.0.0/10",                 "100.64.0.0/10"),
+    ("Documentation  ·  192.0.2.0/24",          "192.0.2.0/24"),
+    ("IPv6 Loopback  ·  ::1/128",               "::1/128"),
+    ("IPv6 Link-local  ·  fe80::/10",           "fe80::/10"),
+    ("IPv6 ULA  ·  fd00::/8",                    "fd00::/8"),
+    ("IPv6 Documentation  ·  2001:db8::/32",    "2001:db8::/32"),
+    ("IPv6 Global  ·  2000::/3",                 "2000::/3"),
+]
+
+
 def max_bits(version):
     return 128 if version == 6 else 32
 

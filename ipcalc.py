@@ -21,7 +21,7 @@ from rich.text import Text
 
 from textual.app import App, ComposeResult
 from textual.containers import Vertical
-from textual.widgets import DataTable, Footer, Header, Input, Static
+from textual.widgets import DataTable, Footer, Header, Input, Select, Static
 
 import ipcalc_core as core
 
@@ -72,6 +72,7 @@ class IpCalc(App):
     #form { height: auto; padding: 1 2 0 2; }
     .lbl { color: $text-muted; padding: 0 1; }
     Input { margin-bottom: 1; }
+    Select { margin-bottom: 1; }
     #message { height: auto; padding: 0 2; color: $error; text-style: bold; }
     #detail { height: auto; padding: 0 2; }
     #summary { height: auto; padding: 0 2; color: $accent; text-style: bold; }
@@ -88,6 +89,10 @@ class IpCalc(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=False)
         with Vertical(id="form"):
+            yield Static("Preset network (quick fill):", classes="lbl")
+            yield Select([(lbl, val) for lbl, val in core.PRESETS],
+                         prompt="Choose a predefined network…",
+                         id="preset", allow_blank=True)
             yield Static("Address — IPv4/IPv6, CIDR or mask:", classes="lbl")
             yield Input(value="192.168.1.10/24", id="addr",
                         placeholder="e.g. 192.168.1.10/24 or 2001:db8::1/64")
@@ -110,6 +115,10 @@ class IpCalc(App):
 
     def on_input_changed(self, event: Input.Changed) -> None:
         self.recompute()
+
+    def on_select_changed(self, event: Select.Changed) -> None:
+        if event.value is not Select.BLANK:
+            self.query_one("#addr", Input).value = event.value
 
     def action_clear(self) -> None:
         for wid in ("addr", "split", "vlsm"):
